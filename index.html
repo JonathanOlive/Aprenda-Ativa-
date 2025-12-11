@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Aprenda Ativa - Cursos Gratuitos</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">Aprenda<span>Ativa</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#cursos">Cursos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Educação Gratuita com Estilo</h1>
+            <p>Aprenda Ativa oferece cursos gratuitos com vídeos, atividades interativas e apoio contínuo — tudo em um ambiente inspirador, criado para você aprender com serenidade e foco.</p>
+            <a href="#cursos" class="btn">Começar Agora</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">Nossos Cursos</h2>
+        
+        <div class="disciplinas-tabs">
+            <button class="disciplina-btn active" onclick="mostrarDisciplina('todas')">Todas</button>
+            <button class="disciplina-btn" onclick="mostrarDisciplina('matematica')">Matemática</button>
+            <!-- <button class="disciplina-btn" onclick="mostrarDisciplina('portugues')">Português</button>
+            <button class="disciplina-btn" onclick="mostrarDisciplina('ciencias')">Ciências</button>
+            <button class="disciplina-btn" onclick="mostrarDisciplina('historia')">História</button> -->
+            <button class="disciplina-btn" onclick="mostrarDisciplina('ingles')">Inglês</button>
+        </div>
+
+        <div id="cursos" class="cursos-grid">
+            <!-- Cursos serão inseridos aqui pelo JavaScript -->
+        </div>
+    </div>
+
+    <section id="sobre" class="sobre">
+        <div class="sobre-content">
+            <h2>Sobre a Aprenda Ativa</h2>
+            <p>Nossa plataforma une design elegante e pedagogia eficaz. Acreditamos que o ambiente de aprendizagem influencia diretamente na motivação e no desempenho.</p>
+            <p>Por isso, criamos uma experiência visual serena — com tons de lilás e roxo — que acalma a mente e estimula a concentração, perfeita para o verdadeiro aprendizado.</p>
+            <a href="#cursos" class="btn">Explorar Cursos</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Aprenda Ativa — Todos os direitos reservados</p>
+        <p>Educação gratuita, inspiradora e transformadora</p>
+    </footer>
+
+    <script>
+        const cursos = [
+            { id: 1, titulo: "Matemática Básica", descricao: "Aprenda os fundamentos da matemática: operações básicas, frações, porcentagem e muito mais.", disciplina: "matematica", duracao: "8 horas", nivel: "Iniciante" },
+           // { id: 2, titulo: "Álgebra para Iniciantes", descricao: "Domine equações, inequações e funções com este curso prático e interativo.", disciplina: "matematica", duracao: "12 horas", nivel: "Intermediário" },
+            //{ id: 3, titulo: "Gramática Portuguesa", descricao: "Aprenda regras gramaticais, pontuação e como escrever textos impecáveis.", disciplina: "portugues", duracao: "10 horas", nivel: "Iniciante" },
+           // { id: 4, titulo: "Interpretação de Textos", descricao: "Desenvolva suas habilidades de leitura e compreensão de textos de todos os tipos.", disciplina: "portugues", duracao: "6 horas", nivel: "Intermediário" },
+           // { id: 6, titulo: "Física Básica", descricao: "Aprenda os princípios fundamentais da física: movimento, forças e energia.", disciplina: "ciencias", duracao: "14 horas", nivel: "Intermediário" },
+           // { id: 7, titulo: "História do Brasil", descricao: "Conheça a história do Brasil desde o período colonial até os dias atuais.", disciplina: "historia", duracao: "20 horas", nivel: "Iniciante" },
+           // { id: 8, titulo: "História Mundial", descricao: "Explore os grandes eventos que moldaram a história da humanidade.", disciplina: "historia", duracao: "18 horas", nivel: "Intermediário" },
+            { id: 9, titulo: "Inglês para Iniciantes", descricao: "Aprenda inglês do zero: vocabulário básico, gramática e conversação.", disciplina: "ingles", duracao: "25 horas", nivel: "Iniciante" },
+           // { id: 10, titulo: "Inglês Intermediário", descricao: "Aprimore suas habilidades em inglês com foco em conversação e compreensão.", disciplina: "ingles", duracao: "30 horas", nivel: "Intermediário" }
+        ];
+
+        function renderizarCursos(cursosFiltrados) {
+            const container = document.getElementById('cursos');
+            container.innerHTML = '';
+            
+            cursosFiltrados.forEach(curso => {
+                const card = document.createElement('div');
+                card.className = 'curso-card';
+                card.innerHTML = `
+                    <div class="curso-img">📚</div>
+                    <div class="curso-content">
+                        <h3>${curso.titulo}</h3>
+                        <p>${curso.descricao}</p>
+                        <div class="curso-meta">
+                            <span>${curso.duracao}</span>
+                            <span>${curso.nivel}</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function mostrarDisciplina(disciplina) {
+            const botoes = document.querySelectorAll('.disciplina-btn');
+            botoes.forEach(botao => botao.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (disciplina === 'todas') {
+                renderizarCursos(cursos);
+            } else {
+                const cursosFiltrados = cursos.filter(curso => curso.disciplina === disciplina);
+                renderizarCursos(cursosFiltrados);
+            }
+        }
+
+        renderizarCursos(cursos);
+    </script>
+</body>
+</html>
+
